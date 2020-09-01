@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import { SearchCard } from "../components/SearchCard/index.js";
+import { SearchResultCard } from "../components/SearchResultCard/index.js";
 
 class Search extends Component {
     // Empty Starter State
@@ -21,7 +21,7 @@ class Search extends Component {
     saveBook = (id) => {
         // Destructuring to keep code DRY.
         let {
-            volumeInfo: { id, title, authors, description, img, link },
+            volumeInfo: { id, title, authors, description, img, link, imageLinks },
         } = this.state.books.find((book) => book.id === id);
         API.saveBook({
             id: id,
@@ -29,9 +29,10 @@ class Search extends Component {
             authors: authors,
             description: description,
             img: img,
-            link: link,
+            infoLink: infoLink,
+            imageLinks: imageLinks
         });
-        alert(`${title} by ${authors} was saved!`);
+        alert(`${title} by ${authors} is now added to your Saved Books!`);
     };
     // Search Page
     render() {
@@ -53,22 +54,22 @@ class Search extends Component {
                     </form>
                 </div>
                 <div className="row">
-                    <div cassName="col-md">
-                        {/* {this.state.books.map(book => 
-                            <SearchCard 
-                                {...book} 
-                                key={book.id}
-                                saveBook={
-                                    () => this.saveBook(book.id)
-                                }
-                                viewClick={
-                                    () => this.viewClick
-                                }
-                            />
-                        )} */}
-                    </div>
+                    {this.state.books.map(book => 
+                        <SearchResultCard 
+                            {...book} 
+                            key={book._id}
+                            saveBook={
+                                () => this.saveBook(book._id)
+                            }
+                            viewClick={
+                                () => this.viewClick
+                            }
+                        />
+                    )}
                 </div>
             </div>
         );
     };
 };
+
+export default Search;
