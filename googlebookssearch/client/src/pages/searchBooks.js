@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import { SearchCard } from "../componets/searchcard/index.js";
+import { SearchCard } from "../components/SearchCard/index.js";
 
 class Search extends Component {
     // Empty Starter State
@@ -54,7 +54,7 @@ class Search extends Component {
                 </div>
                 <div className="row">
                     <div cassName="col-md">
-                        {this.state.books.map(book => 
+                        {/* {this.state.books.map(book => 
                             <SearchCard 
                                 {...book} 
                                 key={book.id}
@@ -65,7 +65,7 @@ class Search extends Component {
                                     () => this.viewClick
                                 }
                             />
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>
