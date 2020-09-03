@@ -21,9 +21,16 @@ app.get("*", (req, res) => {
 });
 
 // MLab
-// const MONOGDB_URI = "";
+const MONGODB_URI = "mongodb+srv://fftab:ZAIML0oqmdaF6KZw@cluster0.bmkuq.mongodb.net/google_books_search?retryWrites=true&w=majority";
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/google_books_search",
+{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+}
+);
 
 // Start the API server
 app.listen(PORT, function() {
